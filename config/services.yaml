@@ -26,5 +26,5 @@ services:
     Doctrine\DBAL\Connection:
         factory: ["Doctrine\\DBAL\\DriverManager", "getConnection"]
         arguments:
-           $params:
-               url: "sqlite:///%kernel.project_dir%/var/data.sqlite"
+            $params:
+                url: "sqlite:///%kernel.project_dir%/var/data.sqlite"

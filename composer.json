@@ -5,25 +5,22 @@
     "prefer-stable": true,
     "require": {
         "php": ">=8.2",
-        "ext-pdo_sqlite": "*",
         "ext-ctype": "*",
         "ext-dom": "*",
         "ext-iconv": "*",
-        "doctrine/collections": "*",
         "doctrine/dbal": "^3.5",
-        "moneyphp/money": "^4.6",
-        "symfony/asset": "7.3.*",
-        "symfony/console": "7.3.*",
-        "symfony/dotenv": "7.3.*",
+        "symfony/asset": "7.3",
+        "symfony/console": "7.3",
+        "symfony/dotenv": "7.3",
         "symfony/flex": "^2",
-        "symfony/form": "7.3.*",
-        "symfony/framework-bundle": "7.3.*",
+        "symfony/form": "7.3",
+        "symfony/framework-bundle": "7.3",
         "symfony/monolog-bundle": "^3.0",
-        "symfony/runtime": "7.3.*",
-        "symfony/twig-bundle": "7.3.*",
-        "symfony/yaml": "7.3.*",
-        "twig/extra-bundle": "^3.0",
-        "twig/twig": "^3.0"
+        "symfony/runtime": "7.3",
+        "symfony/twig-bundle": "7.3",
+        "symfony/yaml": "7.3",
+        "twig/extra-bundle": "^2.12|^3.0",
+        "twig/twig": "^2.12|^3.0"
     },
     "config": {
         "allow-plugins": {
@@ -74,12 +71,12 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "7.3.*"
+            "require": "7.3"
         }
     },
     "require-dev": {
-        "symfony/debug-bundle": "7.3.*",
-        "symfony/stopwatch": "7.3.*",
-        "symfony/web-profiler-bundle": "7.3.*"
+        "symfony/debug-bundle": "7.3",
+        "symfony/stopwatch": "7.3",
+        "symfony/web-profiler-bundle": "7.3"
     }
 }

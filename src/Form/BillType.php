@@ -2,8 +2,6 @@
 
 namespace App\Form;
 
-use App\Model\Bill;
-use App\Repository\BillRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Event\SubmitEvent;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -15,10 +13,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class BillType extends AbstractType
 {
-    public function __construct(private readonly BillRepository $billRepository)
-    {
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -38,8 +32,7 @@ class BillType extends AbstractType
 
                 $data['lines'] = $linesCleaned;
 
-                $bill = $this->billRepository->convertBill($data);
-                $event->setData($bill);
+                $event->setData($data);
             })
         ;
     }
