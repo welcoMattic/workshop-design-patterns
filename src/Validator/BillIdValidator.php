@@ -4,7 +4,7 @@ namespace App\Validator;
 
 use App\Model\Bill;
 
-class BillValidator implements BillValidatorInterface
+class BillIdValidator implements BillValidatorInterface
 {
     private const REGEX = '/^IN-%s-\d{3}$/';
 
