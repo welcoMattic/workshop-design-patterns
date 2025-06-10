@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title 'Billing software' %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>📉</text></svg>">
+        <link rel="stylesheet" href="{{ asset('style.css') }}" />
+    </head>
+    <body>
+        {% block body %}
+            <header>
+                <h1>Billing Software</h1>
+            </header>
+            <nav>
+                <ul id="menu">
+                    <li>
+                        <a href="{{ path('list') }}">Browse the bills</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('create') }}">Create a new bill</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('door') }}">Access the door</a>
+                    </li>
+                </ul>
+            </nav>
+            {% block content '' %}
+        {% endblock %}
+    </body>
+</html>

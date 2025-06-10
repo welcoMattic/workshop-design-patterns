@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h2>Bills</h2>
+
+    <table id="bills">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Total</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for bill in bills %}
+            <tr>
+                <td>
+                    <a href="{{ path('show', {id: bill.id}) }}">
+                        {{ bill.id }}
+                    </a>
+                </td>
+                <td>{{ bill.totalPrice|price }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3"><em>No bill found</em></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

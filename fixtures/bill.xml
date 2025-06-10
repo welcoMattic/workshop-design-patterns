@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bill>
+    <id>IN-20221027-002</id>
+    <lines>
+        <line name="Printer" unit-price-in-cents="27000" quantity="1" currency="EUR" />
+        <line name="Screen" unit-price-in-cents="43000" quantity="1" currency="EUR" />
+        <line name="Chair" unit-price-in-cents="12000" quantity="3" currency="EUR" />
+    </lines>
+</bill>

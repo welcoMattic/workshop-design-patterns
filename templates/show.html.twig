@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h2>Bill "{{ bill.id }}"</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Unit price</th>
+            <th>Total price</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% set total_in_cents = 0 %}
+        {% for line in bill.lines %}
+            <tr>
+                <td>{{ line.name }}</td>
+                <td>{{ line.quantity }}x</td>
+                <td>{{ line.unitPrice|price }}</td>
+                <td>{{ line.price|price }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <p><strong>Total</strong>: {{ bill.totalPrice|price }}</p>
+
+    <p>Items</p>
+    <ul>
+        {% for item in bill.items %}
+            <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

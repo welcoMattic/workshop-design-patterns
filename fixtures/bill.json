@@ -1,0 +1,28 @@
+{
+    "id": "IN-20221027-001",
+    "total_price_in_cents": 1260,
+    "currency": "EUR",
+    "lines": [
+        {
+            "name": "Potatoes",
+            "unit_price_in_cents": 100,
+            "quantity": 5,
+            "currency": "EUR",
+            "total_price_in_cents": 500
+        },
+        {
+            "name": "Carrots",
+            "unit_price_in_cents": 90,
+            "quantity": 3,
+            "currency": "EUR",
+            "total_price_in_cents": 270
+        },
+        {
+            "name": "Onions",
+            "unit_price_in_cents": 70,
+            "quantity": 7,
+            "currency": "EUR",
+            "total_price_in_cents": 490
+        }
+    ]
+}

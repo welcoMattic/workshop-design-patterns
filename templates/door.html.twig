@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h2>The Door</h2>
+    <p>
+        <strong>State</strong>: {{ state }}
+    </p>
+    <p>
+        {% if action %}
+            <strong>Action</strong>: {{ action }}
+        {% else %}
+            <em>No action</em>
+        {% endif %}
+    </p>
+    <p>
+        {% if error %}
+            <strong>Error</strong>: {{ error }}
+        {% else %}
+            <em>No error</em>
+        {% endif %}
+    </p>
+    <p>
+        <strong>Finish state</strong>: {{ door.state }}
+    </p>
+    <form method="GET" action="{{ path('door') }}">
+        <input type="hidden" name="s" value="{{ door.state }}" />
+        <p>
+            <button name="a" value="open">Open the door</button>
+            <button name="a" value="close">Close the door</button>
+            <button name="a" value="lock">Lock the door</button>
+            <button name="a" value="unlock">Unlock the door</button>
+        </p>
+    </form>
+{% endblock %}
