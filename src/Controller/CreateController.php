@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Form\BillType;
-use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\DriverManager;
 use Doctrine\DBAL\Exception\TableNotFoundException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,7 +15,7 @@ class CreateController extends AbstractController
     private const REGEX = '/^IN-%s-\d{3}$/';
 
     #[Route(path: '/create', name: 'create')]
-    public function __invoke(Request $request, Connection $conn): Response
+    public function __invoke(Request $request): Response
     {
         $form = $this->createForm(BillType::class);
         $form->handleRequest($request);
@@ -44,6 +44,10 @@ class CreateController extends AbstractController
                     'price' => sprintf('%.2f %s', $total/100, $currency),
                     'lines' => json_encode($lines, JSON_THROW_ON_ERROR),
                 ];
+
+                $conn = DriverManager::getConnection([
+                    'url' => 'sqlite:///'.dirname(__DIR__, 2).'/var/data.sqlite',
+                ]);
 
                 try {
                     $conn->insert('bills', $row);
