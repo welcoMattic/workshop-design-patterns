@@ -14,16 +14,15 @@
         <tbody>
         {% set total_in_cents = 0 %}
         {% for line in bill.lines %}
-            {% set total_in_cents = total_in_cents + line.quantity * line.unit_price_in_cents %}
             <tr>
                 <td>{{ line.name }}</td>
                 <td>{{ line.quantity }}x</td>
-                <td>{{ "%.2f %s"|format(line.unit_price_in_cents / 100, line.currency) }}</td>
-                <td>{{ "%.2f %s"|format(line.quantity * line.unit_price_in_cents / 100, line.currency) }}</td>
+                <td>{{ line.unitPrice|price }}</td>
+                <td>{{ line.price|price }}</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <p><strong>Total</strong>: {{ bill.price }}</p>
+    <p><strong>Total</strong>: {{ bill.price|price }}</p>
 {% endblock %}

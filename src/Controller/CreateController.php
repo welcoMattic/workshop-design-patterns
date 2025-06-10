@@ -20,13 +20,13 @@ class CreateController extends AbstractController
         $form = $this->createForm(BillType::class);
         $form->handleRequest($request);
 
+        $errors = [];
         if ($form->isSubmitted()) {
             $data = $form->getData();
             $errors = $billValidator->validate($data);
             $hasErrors = !empty($errors);
             if (!$hasErrors) {
                 $billRepository->createBill($data);
-
                 return $this->redirectToRoute('list');
             }
         }

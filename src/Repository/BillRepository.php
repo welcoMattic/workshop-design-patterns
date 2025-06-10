@@ -2,8 +2,13 @@
 
 namespace App\Repository;
 
+use App\Model\Bill;
+use App\Model\BillLine;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Exception\TableNotFoundException;
+use Money\Currency;
+use Money\Money;
 
 class BillRepository
 {
@@ -12,14 +17,19 @@ class BillRepository
     ) {
     }
 
-    public function createBill(array $data): void
+    public function createBill(Bill $bill): void
     {
-        $lines = $data['lines'];
-        $total = array_sum(array_map(fn ($row) => $row['unit_price_in_cents'] * $row['quantity'], $lines));
-        $currency = $lines[0]['currency'];
+        $lines = $bill->getLines()->map(function (BillLine $line) {
+            return [
+                'name' => $line->getName(),
+                'quantity' => $line->getQuantity(),
+                'unit_price_in_cents' => $line->getUnitPrice()->getAmount(),
+                'currency' => $line->getUnitPrice()->getCurrency()->getCode(),
+            ];
+        })->toArray();
+
         $row = [
-            'id' => $data['id'],
-            'price' => sprintf('%.2f %s', $total/100, $currency),
+            'id' => $bill->getId(),
             'lines' => json_encode($lines, JSON_THROW_ON_ERROR),
         ];
 
@@ -29,25 +39,30 @@ class BillRepository
         } catch (TableNotFoundException $e) {
             $this->connection->executeStatement('CREATE TABLE bills (
                         id VARCHAR(30) PRIMARY KEY,
-                        price VARCHAR(64) NOT NULL,
                         lines TEXT NOT NULL
                     )');
             $this->connection->insert('bills', $row);
         }
     }
 
+    /**
+     * @return Bill[]
+     */
     public function getBills(): array
     {
         try {
             $stmt = $this->connection->executeQuery('SELECT * FROM bills');
-
-            return $stmt->fetchAllAssociative();
+            $list = $stmt->fetchAllAssociative();
+            foreach ($list as $i => $line) {
+                $list[$i]['lines'] = json_decode($line['lines'], true, flags: JSON_THROW_ON_ERROR);
+            }
+            return $this->convertBillList($list);
         } catch (TableNotFoundException) {
             return [];
         }
     }
 
-    public function getBill(string $id): array
+    public function getBill(string $id): Bill
     {
         $bill = false;
         try {
@@ -65,6 +80,37 @@ class BillRepository
 
         $bill['lines'] = json_decode($bill['lines'], true, 512, JSON_THROW_ON_ERROR);
 
-        return $bill;
+        return $this->convertBill($bill);
+    }
+
+    /**
+     * @param array[] $billArrays
+     * @return Bill[]
+     */
+    private function convertBillList(array $billArrays)
+    {
+
+        return array_map([$this, 'convertBill'], $billArrays);
+    }
+
+    public function convertBill(array $billArray): Bill
+    {
+        $lines = [];
+        foreach ($billArray['lines'] as $line) {
+            $cents = $line['unit_price_in_cents'];
+            $currency = $line['currency'];
+            $currentObj = new Currency($currency);
+            $price = new Money($cents, $currentObj);
+            $lines[] = new BillLine(
+                $line['name'],
+                $line['quantity'],
+                $price,
+            );
+        }
+
+        return new Bill(
+            $billArray['id'],
+            new ArrayCollection($lines),
+        );
     }
 }
