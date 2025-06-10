@@ -3,8 +3,13 @@
 {% block content %}
     <h2 class="text-2xl mb-6">Create a new bill</h2>
 
-    {% if error %}
-        <p class="text-red"><strong>Error:</strong> {{ error }}</p>
+    {% if errors|length > 0 %}
+        <p class="text-red"><strong>Error(s):</strong></p>
+        <ul>
+            {% for error in errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
     {% endif %}
 
     {{ form_start(form, { attr: { novalidate: 'novalidate' } }) }}
