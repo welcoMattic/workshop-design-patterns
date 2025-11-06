@@ -8,6 +8,7 @@
         "ext-ctype": "*",
         "ext-dom": "*",
         "ext-iconv": "*",
+        "ext-pdo_sqlite": "*",
         "doctrine/dbal": "^3.5",
         "symfony/asset": "^7.3",
         "symfony/console": "^7.3",
