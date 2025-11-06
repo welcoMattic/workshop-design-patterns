@@ -1,42 +1,54 @@
 Practical Design Patterns With Symfony
 ======================================
 
-[Slides link](https://docs.google.com/presentation/d/1luwHGo3te25Z025XMYrkg4Ta70U8UlU0RQAk5aCBDSI/edit?usp=sharing)
+[🔗 Slides link](https://docs.google.com/presentation/d/1mUq9xvSERlznu3O-67Qw3hHJ5cwTRgkpodF9niZfpCM/edit?usp=sharing)
 
-Installation
-------------
+# Installation
 
-Clone the repository:
+1. Clone the repository:
 
 ```shell
-git clone git@github.com:alexandresalome/workshop-design-patterns
+git clone git@github.com:welcoMattic/workshop-design-patterns
 cd workshop-design-patterns
 ```
 
-Install the dependencies:
+## With Symfony CLI
+
+0. Check Symfony requirements
 
 ```shell
-composer install
+symfony check:requirements
 ```
 
-And run Symfony from it:
+1. Install the dependencies
 
+```shell
+symfony composer install
 ```
-symfony serve
+
+2. Start the dev server
+
+```shell
+symfony serve -d
 ```
 
-With docker
------------
+## With docker
 
-You can use this project with Docker by:
+You can use this project with Docker by
 
-```
-# Building the Docker image for the project
+1. Build the Docker image for the project
+```shell
 docker build --tag workshop:latest .
-
-# Install dependencies
-docker run --rm -v "`pwd`:/var/www/html" workshop:latest composer install
-
-# Start the web server
-docker run --rm -p 8123:80 --name workshop -v "`pwd`:/app" workshop:latest
 ```
+
+2. Install dependencies
+```shell
+docker run --rm -ti -v "`pwd`:/var/www/html" workshop:latest composer install
+```
+
+3. Start the web server
+```
+docker run --rm -ti -p 8123:80 --name workshop -v "`pwd`:/app" workshop:latest
+```
+
+4. Open the website on `http://localhost:8123`
