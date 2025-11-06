@@ -1,9 +1,8 @@
-Practical Design Patterns With Symfony
-======================================
+![Practical Design Patterns with Symfony](art/banner.png)
 
-[🔗 Slides link](https://docs.google.com/presentation/d/1mUq9xvSERlznu3O-67Qw3hHJ5cwTRgkpodF9niZfpCM/edit?usp=sharing)
+## [🔗 Slides link](https://docs.google.com/presentation/d/1mUq9xvSERlznu3O-67Qw3hHJ5cwTRgkpodF9niZfpCM/edit?usp=sharing)
 
-# Installation
+# 🏗️ Installation
 
 1. Clone the repository:
 
@@ -12,7 +11,7 @@ git clone git@github.com:welcoMattic/workshop-design-patterns
 cd workshop-design-patterns
 ```
 
-## With Symfony CLI
+## <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/symfony/symfony-original.svg" alt="symfony" width="28" height="28" /> With Symfony CLI
 
 0. Check Symfony requirements
 
@@ -32,7 +31,7 @@ symfony composer install
 symfony serve -d
 ```
 
-## With docker
+## <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-plain.svg" alt="php" width="28" height="28" /> With Docker
 
 You can use this project with Docker by
 
