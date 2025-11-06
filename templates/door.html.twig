@@ -1,34 +1,35 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    <h2>The Door</h2>
-    <p>
-        <strong>State</strong>: {{ state }}
+    <h2 class="text-2xl mb-6">The Door</h2>
+    <p class="mt-6">
+        <strong>State</strong>:
+        <span class="bg-gray-300 text-gray-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm">{{ state }}</span>
     </p>
-    <p>
+    <p class="mt-6">
         {% if action %}
             <strong>Action</strong>: {{ action }}
         {% else %}
             <em>No action</em>
         {% endif %}
     </p>
-    <p>
+    <p class="mt-6">
         {% if error %}
             <strong>Error</strong>: {{ error }}
         {% else %}
             <em>No error</em>
         {% endif %}
     </p>
-    <p>
+    <p class="mt-6">
         <strong>Finish state</strong>: {{ door.state }}
     </p>
-    <form method="GET" action="{{ path('door') }}">
+    <form method="GET" action="{{ path('door') }}" class="mt-6">
         <input type="hidden" name="s" value="{{ door.state }}" />
         <p>
-            <button name="a" value="open">Open the door</button>
-            <button name="a" value="close">Close the door</button>
-            <button name="a" value="lock">Lock the door</button>
-            <button name="a" value="unlock">Unlock the door</button>
+            <button name="a" value="open" class="text-white bg-green-700 hover:bg-green-800 font-medium rounded-lg text-sm px-5 py-2.5">Open the door</button>
+            <button name="a" value="close" class="text-white bg-yellow-700 hover:bg-yellow-800 font-medium rounded-lg text-sm px-5 py-2.5">Close the door</button>
+            <button name="a" value="lock" class="text-white bg-red-700 hover:bg-red-800 font-medium rounded-lg text-sm px-5 py-2.5">Lock the door</button>
+            <button name="a" value="unlock" class="text-white bg-indigo-700 hover:bg-indigo-800 font-medium rounded-lg text-sm px-5 py-2.5">Unlock the door</button>
         </p>
     </form>
 {% endblock %}

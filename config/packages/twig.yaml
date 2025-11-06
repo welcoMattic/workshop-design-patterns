@@ -2,7 +2,7 @@ twig:
     default_path: '%kernel.project_dir%/templates'
 
     form_themes:
-        - form_table_layout.html.twig
+        - tailwind_2_layout.html.twig
 
 when@test:
     twig:

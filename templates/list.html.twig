@@ -1,30 +1,30 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    <h2>Bills</h2>
+    <h2 class="text-3xl">Bills</h2>
 
-    <table id="bills">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Total</th>
-        </tr>
+    <table class="w-full text-sm text-left text-gray-500 mt-6" id="bills">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+            <tr>
+                <th scope="col" class="px-6 py-3">ID</th>
+                <th scope="col" class="px-6 py-3">Total</th>
+            </tr>
         </thead>
         <tbody>
-        {% for bill in bills %}
-            <tr>
-                <td>
-                    <a href="{{ path('show', {id: bill.id}) }}">
-                        {{ bill.id }}
-                    </a>
-                </td>
-                <td>{{ bill.price }}</td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3"><em>No bill found</em></td>
-            </tr>
-        {% endfor %}
+            {% for bill in bills %}
+                <tr class="bg-white border-b border-gray-200">
+                    <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                        <a href="{{ path('show', {id: bill.id}) }}">
+                            {{ bill.id }}
+                        </a>
+                    </td>
+                    <td class="px-6 py-4">{{ bill.price }}</td>
+                </tr>
+            {% else %}
+                <tr class="bg-white border-b border-gray-200">
+                    <td colspan="3" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"><em>No bill found</em></td>
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
 {% endblock %}

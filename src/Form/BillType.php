@@ -39,10 +39,9 @@ class BillType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $empty = [
-        ];
+        $empty = [];
         $resolver->setDefault('data', [
-            'lines' => [$empty, $empty, $empty, $empty, $empty, $empty, $empty],
+            'lines' => [$empty, $empty, $empty],
         ]);
     }
 }
