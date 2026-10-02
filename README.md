@@ -51,3 +51,7 @@ docker run --rm -ti -p 8123:80 --name workshop -v "`pwd`:/app" workshop:latest
 ```
 
 4. Open the website on `http://localhost:8123`
+
+# Sponsors
+
+If this project is useful to you, you can support my open source work on [GitHub Sponsors](https://github.com/sponsors/welcoMattic). Tiers and what they fund: [blog.welcomattic.com/sponsors/en](https://blog.welcomattic.com/sponsors/en/). From the Company tier ($100 a month), your logo and a link appear here.
